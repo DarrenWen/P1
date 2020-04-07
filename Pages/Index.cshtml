@@ -2,9 +2,23 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    var serverName = Request.Host.ToString();
+    var clientInfo = Request.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString() + ":" + Request.HttpContext.Connection.RemotePort;
+    var serverInfo = Request.HttpContext.Connection.LocalIpAddress.MapToIPv4().ToString() + ":" + Request.HttpContext.Connection.LocalPort;
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+    <h3>
+        请求服务器信息: @serverName
+
+    </h3>
+    <h3>
+        Docker容器信息: @serverInfo
+
+    </h3>
+    <h3>
+        请求客户端信息: @clientInfo
+    </h3>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
